@@ -15,7 +15,7 @@ class Application
 {
 	private ?Slim $app = null;
 
-	public function init()
+	public function init(): void
 	{
 		$this->loadSession();
 		$this->loadEnvironment();
@@ -30,21 +30,12 @@ class Application
 		$this->loadHooks();
 	}
 
-	private function loadSession()
+	private function loadSession(): void
 	{
-		ini_set('date.timezone', 'Europe/London');
-		setlocale(LC_ALL, 'en_GB');
-		session_set_cookie_params([
-			"path" => "/",
-			'secure' => false,      // keep false if not using HTTPS
-			'httponly' => true,     // recommended
-			'samesite' => 'Lax'     // works for normal redirects and POST forms
-		]);
-		session_cache_limiter(false);
-		session_start();
+		Session::start();
 	}
 
-	private function loadEnvironment()
+	private function loadEnvironment(): void
 	{
 		ini_set('display_errors', '1');
 
@@ -57,7 +48,7 @@ class Application
 		$dotenv->load();
 	}
 
-	private function loadDebugging()
+	private function loadDebugging(): void
 	{
 		if (isset($_ENV['APP_MODE']) && $_ENV['APP_MODE'] === 'dev') {
 			ini_set('display_errors', '1');
@@ -67,12 +58,12 @@ class Application
 		}
 	}
 
-	public function run()
+	public function run(): void
 	{
 		$this->app->run();
 	}
 
-	private function loadSlim()
+	private function loadSlim(): void
 	{
 		$debug = isset($_ENV['APP_DEBUG']) && $_ENV['APP_DEBUG'] === 'dev';
 
@@ -91,7 +82,7 @@ class Application
 		]);
 	}
 
-	private function loadLogging()
+	private function loadLogging(): void
 	{
 		$this->app->container->singleton('log', function () {
 			$log = new Logger('logger');
@@ -100,7 +91,7 @@ class Application
 		});
 	}
 
-	private function loadErrorPages()
+	private function loadErrorPages(): void
 	{
 		$this->app->notFound(function () {
 			$obj = new NotFoundController();
@@ -116,13 +107,13 @@ class Application
 		});
 	}
 
-	private function loadCommon()
+	private function loadCommon(): void
 	{
 		$common = new Common();
 		$common->init();
 	}
 
-	private function loadRouting()
+	private function loadRouting(): void
 	{
 		require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/routes/frontend.php';
 		require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/routes/cms.php';
@@ -130,7 +121,7 @@ class Application
 		require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/routes/account.php';
 	}
 
-	private function loadHooks()
+	private function loadHooks(): void
 	{
 		$app = $this->app;
 
