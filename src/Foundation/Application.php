@@ -52,7 +52,6 @@ class Application
 	{
 		if (isset($_ENV['APP_MODE']) && $_ENV['APP_MODE'] === 'dev') {
 			ini_set('display_errors', '1');
-			$_SESSION['debug'] = true;
 		} else {
 			ini_set('display_errors', '0');
 		}
@@ -115,6 +114,8 @@ class Application
 
 	private function loadRouting(): void
 	{
+		$app = $this->app;
+
 		require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/routes/frontend.php';
 		require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/routes/cms.php';
 		require_once dirname($_SERVER['DOCUMENT_ROOT']) . '/routes/scheduled.php';
