@@ -11,6 +11,6 @@ class NotFoundController extends AbstractController
 
 	public function index()
 	{
-		$this->app->render('404/index.php');
+		$this->app->render('404/dashboard.php');
 	}
 }

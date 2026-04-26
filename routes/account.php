@@ -3,7 +3,7 @@
 use App\Controller\RegisterController;
 use App\Foundation\Session;
 
-$checkCmsAccess = function () {
+$checkAccess = function () {
 	if (!Session::validate() || !isset($_SESSION['account']['id']) || $_SESSION['account']['id'] == 0) {
 		Session::destroy('/login');
 	}
@@ -31,6 +31,14 @@ $app->post('/login', function () {
 })->name('login.post');
 
 
-$app->group('/account', function () use ($app) {
+$app->group('/account', $checkAccess,  function () use ($app) {
+	$app->get('/dashboard', function () {
+		$obj = new \App\Controller\AccountDashboardController();
+		$obj->showDashboard();
+	})->name('account.dashboard');
 
+	$app->post('/dashboard/address', function () {
+		$obj = new \App\Controller\AccountDashboardController();
+		$obj->updateAddress();
+	})->name('account.address');
 });

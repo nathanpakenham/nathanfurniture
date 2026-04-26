@@ -9,7 +9,7 @@ class LoginController extends AbstractController
 {
 	public function index()
 	{
-		if (isset($_SESSION['user']['id'])) {
+		if (isset($_SESSION['account']['id'])) {
 			header("Location: /account/dashboard");
 			exit();
 		}
@@ -58,7 +58,7 @@ class LoginController extends AbstractController
 		}
 
 		session_regenerate_id(true);
-		$_SESSION['user']['id'] = $row['custid'];
+		$_SESSION['account']['id'] = $row['custid'];
 
 		header('Location: /account/dashboard');
 		exit();

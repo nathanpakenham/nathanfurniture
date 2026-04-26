@@ -11,6 +11,6 @@ class ErrorController extends AbstractController
 
 	public function index()
 	{
-		$this->app->render('error/index.php');
+		$this->app->render('error/dashboard.php');
 	}
 }

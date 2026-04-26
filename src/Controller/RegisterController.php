@@ -12,7 +12,7 @@ class RegisterController extends AbstractController
 	{
 		Globals::addBreadCrumb('Register', 'register');
 
-		$this->app->render('register/index.php', [
+		$this->app->render('register/dashboard.php', [
 			'title' => 'Register'
 		]);
 	}
