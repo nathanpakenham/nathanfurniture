@@ -2,6 +2,6 @@
 
 $config = [];
 
-$config['test'] = 'terst';
+$config['client'] = 'Nathan Furniture';
 
 return $config;

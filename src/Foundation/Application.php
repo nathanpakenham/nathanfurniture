@@ -37,8 +37,6 @@ class Application
 
 	private function loadEnvironment(): void
 	{
-		ini_set('display_errors', '1');
-
 
 		if (!file_exists(dirname(__DIR__, 2) . '/.env')) {
 			die('env file not found');
@@ -64,7 +62,7 @@ class Application
 
 	private function loadSlim(): void
 	{
-		$debug = isset($_ENV['APP_DEBUG']) && $_ENV['APP_DEBUG'] === 'dev';
+		$debug = isset($_ENV['APP_MODE']) && $_ENV['APP_MODE'] === 'dev';
 
 		$this->app = new Slim([
 			'debug' => $debug,

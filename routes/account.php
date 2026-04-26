@@ -1,8 +1,5 @@
 <?php
 
-/** @var \Slim\App $app */
-
-
 use App\Controller\RegisterController;
 use App\Foundation\Session;
 
@@ -16,6 +13,12 @@ $app->get('/register', function () {
 	$obj = new RegisterController();
 	$obj->index();
 })->name('register');
+
+$app->post('/register', function () {
+	$obj = new RegisterController();
+	$obj->store();
+})->name('register.store');
+
 
 $app->get('/login', function () {
 

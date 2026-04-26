@@ -1,3 +1,39 @@
+CREATE TABLE customer_accounts (
+   custid INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+   title VARCHAR(20) NOT NULL,
+   first_name VARCHAR(100) NOT NULL,
+   last_name VARCHAR(100) NOT NULL,
+   email VARCHAR(255) NOT NULL,
+   telephone VARCHAR(30),
+   address1 VARCHAR(150) NOT NULL,
+   address2 VARCHAR(150) NULL,
+   town VARCHAR(100) NOT NULL,
+   county VARCHAR(100) NULL,
+   postcode VARCHAR(20) NOT NULL,
+   country VARCHAR(100) NOT NULL,
+   password VARCHAR(255) NOT NULL,
+   login_attempts INT UNSIGNED NOT NULL DEFAULT 0,
+   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* old structure below
 CREATE TABLE users (
    id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
    name varchar(100) NOT NULL,

@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title><?= e($title ?? 'Nathan Furniture') ?></title>
+	<title><?= e($title . ' - ' . \App\Foundation\Config::get('client')) ?? \App\Foundation\Config::get('client') ?></title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%2210 0 100 100%22><text y=%22.90em%22 font-size=%2290%22>🛒</text></svg>" />
     <meta name="csrf-token" content="<?php echo $_SESSION['csrf_token']; ?>" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
@@ -51,5 +51,19 @@
                 </ul>
             </div>
         </div>
+
+        <div class="breadcrumbs">
+            <nav aria-label="breadcrumb" class="mt-3">
+                <ol class="breadcrumb mb-0">
+                    <?php
+                    $breadcrumbs = \App\Foundation\Globals::get()->breadCrumbs;
+                    foreach ($breadcrumbs as $breadcrumb) {
+                    ?>
+                    <li class="breadcrumb-item"><a href="<?= e($breadcrumb['url']) ?>"><?= e(ucfirst($breadcrumb['name'])) ?></a></li>
+                    <?php } ?>
+                </ol>
+            </nav>
+        </div>
+
     </div>
 </header>
