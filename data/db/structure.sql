@@ -16,7 +16,16 @@ CREATE TABLE customer_accounts (
    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
-
+CREATE TABLE users (
+   id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+   name varchar(100) NOT NULL,
+   email varchar(255) NOT NULL UNIQUE,
+   telephone varchar(20) NOT NULL,
+   password VARCHAR(255) NOT NULL,
+   ip_address varchar(45) NOT NULL,
+   login_attempts INT UNSIGNED NOT NULL DEFAULT 0,
+   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
 
 
 
