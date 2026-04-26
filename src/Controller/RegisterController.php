@@ -10,14 +10,9 @@ class RegisterController extends AbstractController
 {
 	public function index()
 	{
-		if (isset($_SESSION['user']['id'])) {
-			header("Location: /account/dashboard");
-			exit();
-		}
-
 		Globals::addBreadCrumb('Register', 'register');
 
-		$this->app->render('login/index.php', [
+		$this->app->render('register/index.php', [
 			'title' => 'Register'
 		]);
 	}

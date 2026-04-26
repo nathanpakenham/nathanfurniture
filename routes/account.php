@@ -21,8 +21,14 @@ $app->post('/register', function () {
 
 
 $app->get('/login', function () {
-
+	$obj = new \App\Controller\LoginController();
+	$obj->index();
 })->name('login');
+
+$app->post('/login', function () {
+	$obj = new \App\Controller\LoginController();
+	$obj->login();
+})->name('login.post');
 
 
 $app->group('/account', function () use ($app) {

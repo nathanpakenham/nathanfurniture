@@ -1,0 +1,8 @@
+Method	URI	Action	Purpose
+GET	/users	index	List all users
+GET	/users/create	create	Show form to create user
+POST	/users	store	Create a new user
+GET	/users/{id}	show	Show one user
+GET	/users/{id}/edit	edit	Show form to edit user
+PUT/PATCH	/users/{id}	update	Update user
+DELETE	/users/{id}	destroy	Delete user
